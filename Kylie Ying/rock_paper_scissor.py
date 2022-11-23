@@ -1,12 +1,15 @@
 from random import *
 
+
 class game:
     def __init__(self):
         self.player_name = input('Enter Name Please: ')
-        self.new_game()
+        self.__new_game()
+
 
     def __return_player_name(self):
         return self.player_name
+
 
     @staticmethod
     def __choice(num_choice):
@@ -17,18 +20,22 @@ class game:
         else:
             return 'Scissors'
 
-    def new_game(self):
-        no_of_rounds, prank_count, player_wins, computer_wins = 0, 0, 0, 0
-        playr_name = self.__return_player_name()
+
+    def __new_game(self):
+        no_of_rounds = 0
 
         print('\nWelcome To The Ultimate Rock, Paper, Scissors Game\n')
-        print(f'This Match Is Between {playr_name} & La Máquina')
+
+        print(f'This Match Is Between {self.__return_player_name} & La Máquina')
         print('------------------------------------------------------------------------------------------------------------')
+        
         print('Rules:')
         print('\t1. Enter 0 For Rock, 1 For Paper, 2 For Scissor.')
         print('\t2. Take Fun Seriously. Entering Wrong Input Twice In A Single Game Will Result In An Instant Lose.')
         print("\t3. Relax Dude. It's Just A Game!")
+        
         print('------------------------------------------------------------------------------------------------------------')
+        
         print('\nNow! How Many Rounds Do You Want To Challenge The Machine For?\n')
 
         while(1):
@@ -41,12 +48,20 @@ class game:
 
         print('------------------------------------------------------------------------------------------------------------')
 
+        self.__in_match(no_of_rounds)
+
+
+    def __in_match(self, no_of_rounds):
+        no_of_rounds, prank_count, player_wins, computer_wins = 0, 0, 0
+        playr_name = self.__return_player_name()
+
         for round in range(1, no_of_rounds + 1):
             computer_choice = randint(0, 2)
 
             print(f'\nRound {round}')
             print(f"------{'-' * round}-")
             print(f'\nLa Máquina Has Decided. Now You Decide {playr_name}!')
+
             while 1:
                 try:
                     player_choice = int(input('Enter Your Choice: '))
@@ -77,7 +92,7 @@ class game:
             if player_wins > (no_of_rounds / 2):
                 print(f'\n{playr_name} Has Won Due To Technical Victory!!!!!!!! Hurray!!!!!!!!!!\n')
                 return
-            if computer_wins > (no_of_rounds / 2):
+            elif computer_wins > (no_of_rounds / 2):
                 print(f'\nLa Máquina Has Won Due To Technical Victory!!!!!!!! Hurray!!!!!!!!!!\n')
                 return
 
