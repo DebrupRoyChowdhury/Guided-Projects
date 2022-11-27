@@ -47,6 +47,7 @@ class game:
 
     def __match(self):
         self.__prank_count, self.__player_wins, self.__computer_wins = 0, 0, 0
+        playr_name = self.return_player_name()
 
         for round in range(1, self.no_of_rounds + 1):
             computer_choice = randint(0, 2)
@@ -56,7 +57,7 @@ class game:
                 print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!YOU LOST DUDE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
                 return
             if value == 2:
-                print(f'\n{self.__player_name} Has Won Due To Technical Victory!!!!!!!! Hurray!!!!!!!!!!\n')
+                print(f'\n{playr_name} Has Won Due To Technical Victory!!!!!!!! Hurray!!!!!!!!!!\n')
                 return
             if value == 3:
                 print(f'\nLa Máquina Has Won Due To Technical Victory!!!!!!!! Hurray!!!!!!!!!!\n')
@@ -65,9 +66,9 @@ class game:
         if self.__computer_wins > self.__player_wins:
             print('\nLa Máquina Has Won!!!!\n')
         elif self.__player_wins > self.__computer_wins:
-            print(f'\n{self.__player_name} Has Won!!!!\n')
+            print(f'\n{playr_name} Has Won!!!!\n')
         else:
-            print('\nIt Is A Tie! Congratulations!! No One Wins!!')    
+            print('\nIt Is A Tie! Congratulations!! No One Won!!')    
 
 
     def __round(self, computer_choice, round):
