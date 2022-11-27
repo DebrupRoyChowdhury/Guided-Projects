@@ -5,7 +5,11 @@ class game:
         if __player_name == '':
             self.__player_name = input('Enter Your Name Please: ')
 
-        self.__init_new_game()
+        self.init_new_game()
+
+
+    def set_player_name(self):
+        self.__player_name = input('Enter Your Name Please: ')
 
 
     def return_player_name(self):
@@ -22,7 +26,7 @@ class game:
             return 'Scissors'
 
 
-    def __init_new_game(self):
+    def init_new_game(self):
         print('\nWelcome To The Ultimate Rock, Paper, Scissors Game\n')
 
         print(f'This Match Is Between {self.__player_name} & La Máquina')
