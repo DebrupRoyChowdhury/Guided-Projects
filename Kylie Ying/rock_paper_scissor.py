@@ -1,8 +1,10 @@
 from random import randint
 
 class game:
-    def __init__(self):
-        self.__player_name = input('Enter Name Please: ')
+    def __init__(self, __player_name=''):
+        if __player_name == '':
+            self.__player_name = input('Enter Your Name Please: ')
+
         self.__init_new_game()
 
 
@@ -33,13 +35,14 @@ class game:
         
         print('\nNow! How Many Rounds Do You Want To Challenge La Máquina For?\n')
 
-        while(1):
+        while True:
             try:
                 self.no_of_rounds = int(input('Enter Here: '))
             except ValueError:
                 print('\nPlease Enter Valid Number Of Rounds\n')
             else:
                 break
+
         print('------------------------------------------------------------------------------------------------------------')
 
         self.__match()
@@ -78,7 +81,7 @@ class game:
         print(f"------{'-' * round}--")
         print(f'\nLa Máquina Has Decided. Now You Decide {playr_name}!')
 
-        player_choice = self.__choose_player()
+        player_choice = self.__choice_of_player()
 
         if player_choice == 3:
             return 1
@@ -92,13 +95,13 @@ class game:
         elif self.__computer_wins > (self.no_of_rounds / 2):
             return 3
 
-        print(f'\nCurrent Tally: La Máquina {self.__computer_wins}, {playr_name} {self.__player_wins}.\n')
+        print(f'\nCurrent Tally: La Máquina - {self.__computer_wins}, {playr_name} - {self.__player_wins}.\n')
         print('------------------------------------------------------------------------------------------------------------')
         
         return 0
 
 
-    def __choose_player(self):
+    def __choice_of_player(self):
         while 1:
             if self.__prank_count == 2:
                 return 3
