@@ -1,15 +1,22 @@
 from random import randint
 
 class game:
-    def __init__(self, __player_name=''):
-        if __player_name == '':
+    def __init__(self, temp_player_name=''):
+        self.set_player_name(temp_player_name)
+
+        print('Do You Want Start A New Game?')
+        choice = input('Enter Y For Yes: ')
+        
+        if choice in ('y', 'Y'):
+            self.start_new_game()
+
+
+    def set_player_name(self, temp_player_name=''):
+        if temp_player_name == '':
             self.__player_name = input('Enter Your Name Please: ')
-
-        self.init_new_game()
-
-
-    def set_player_name(self):
-        self.__player_name = input('Enter Your Name Please: ')
+            return
+        
+        self.__player_name = temp_player_name
 
 
     def return_player_name(self):
@@ -26,19 +33,19 @@ class game:
             return 'Scissors'
 
 
-    def init_new_game(self):
-        print('\nWelcome To The Ultimate Rock, Paper, Scissors Game\n')
+    def start_new_game(self):
+        line_break = '-' * 110
 
-        print(f'This Match Is Between {self.__player_name} & La Máquina')
-        print('------------------------------------------------------------------------------------------------------------')
-        print('Rules:')
-        print('\t1. Enter 0 For Rock, 1 For Paper, 2 For Scissor.')
-        print('\t2. Take Fun Seriously. Entering Wrong Input Twice In A Single Game Will Result In An Instant Lose.')
-        print("\t3. Relax Dude. It's Just A Game!")
-        print('------------------------------------------------------------------------------------------------------------')
+        print(f'''\nWelcome To The Ultimate Rock, Paper, Scissors Game\n
+        \nThis Match Is Between {self.__player_name} & La Máquina
+        \n{line_break}')
+        \nRules:')
+        \n\t1. Enter 0 For Rock, 1 For Paper, 2 For Scissor.')
+        \n\t2. Take Fun Seriously. Entering Wrong Input Twice In A Single Game Will Result In An Instant Lose.')
+        \n\t3. Relax Dude. It's Just A Game!")
+        \n{line_break}')
+        \nNow! How Many Rounds Do You Want To Challenge La Máquina For?\n''')
         
-        print('\nNow! How Many Rounds Do You Want To Challenge La Máquina For?\n')
-
         while True:
             try:
                 self.no_of_rounds = int(input('Enter Here: '))
@@ -46,8 +53,8 @@ class game:
                 print('\nPlease Enter Valid Number Of Rounds\n')
             else:
                 break
-
-        print('------------------------------------------------------------------------------------------------------------')
+                
+        print(f'{line_break}')
 
         self.__match()
 
@@ -92,7 +99,7 @@ class game:
         
         print(f'\n{playr_name} chose {game.__choice(player_choice)} & La Máquina chose {game.__choice(computer_choice)}\n')
 
-        self.__decision(player_choice, computer_choice)
+        self.__judge(player_choice, computer_choice)
 
         if self.__player_wins > (self.no_of_rounds / 2):
             return 2
@@ -124,7 +131,7 @@ class game:
                 return player_choice
 
 
-    def __decision(self, player_choice, computer_choice):
+    def __judge(self, player_choice, computer_choice):
         if (player_choice + 1) % 3 == computer_choice:
             print('La Máquina Wins')
             self.__computer_wins += 1
