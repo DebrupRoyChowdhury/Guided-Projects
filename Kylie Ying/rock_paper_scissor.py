@@ -1,7 +1,7 @@
 from random import randint
 
 class game:
-    def __init__(self, temp_player_name=''):
+    def __init__(self, temp_player_name = ''):
         self.set_player_name(temp_player_name)
 
         print('Do You Want Start A New Game?')
@@ -11,7 +11,7 @@ class game:
             self.start_new_game()
 
 
-    def set_player_name(self, temp_player_name=''):
+    def set_player_name(self, temp_player_name = ''):
         if temp_player_name == '':
             self.__player_name = input('Enter Your Name Please: ')
             return
